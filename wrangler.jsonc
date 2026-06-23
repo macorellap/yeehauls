@@ -1,0 +1,15 @@
+{
+  // Deploys the static Astro build (./dist) as a Worker with static assets,
+  // plus a tiny Worker entry that handles POST /api/quote (the lead form).
+  // Used by Cloudflare Workers Builds: build = `npm run build`, deploy = `npx wrangler deploy`.
+  "name": "yeehauls",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-06-23",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
