@@ -1,0 +1,581 @@
+/* ============================================================
+   Yee Hauls - design system
+   Hybrid: clean modern trades layout + warm Western accents
+   Palette pulled from the logo (espresso brown + rope cream) + desert rust CTA
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --brown: #3a2a1c;
+  --brown-deep: #2a1d12;
+  --cream: #f4ebdc;
+  --cream-soft: #faf5ec;
+  --rust: #c2622e;
+  --rust-deep: #a44e21;
+  --ink: #22201d;
+  --muted: #6b5f51;
+  --line: #e4d8c4;
+  --white: #ffffff;
+
+  /* Type */
+  --font-head: 'Zilla Slab', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --maxw: 1140px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --radius: 10px;
+  --shadow: 0 6px 24px rgba(42, 29, 18, 0.1);
+  --shadow-sm: 0 2px 8px rgba(42, 29, 18, 0.08);
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  color: var(--rust-deep);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  color: var(--brown);
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  font-weight: 700;
+}
+h1 {
+  font-size: clamp(2.1rem, 5.2vw, 3.2rem);
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+}
+h3 {
+  font-size: 1.3rem;
+}
+p {
+  margin: 0 0 1rem;
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+.section--cream {
+  background: var(--cream-soft);
+  border-block: 1px solid var(--line);
+}
+.section--brown {
+  background: var(--brown);
+  color: var(--cream-soft);
+}
+.section--brown h2,
+.section--brown h3 {
+  color: var(--white);
+}
+.section__head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+}
+.section__head p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--rust);
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.02rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn:hover {
+  text-decoration: none;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn--primary {
+  background: var(--rust);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover {
+  background: var(--rust-deep);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.btn--dark {
+  background: var(--brown);
+  color: var(--white);
+}
+.btn--dark:hover {
+  background: var(--brown-deep);
+}
+.cta-row {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 72px;
+}
+.nav__logo img {
+  height: 48px;
+  width: auto;
+}
+.nav__links {
+  display: none;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav__links a {
+  color: var(--brown);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+.nav__links a:hover {
+  color: var(--rust-deep);
+  text-decoration: none;
+}
+.nav__cta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.nav__phone {
+  display: none;
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  color: var(--brown);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.nav__phone:hover {
+  color: var(--rust-deep);
+  text-decoration: none;
+}
+@media (min-width: 900px) {
+  .nav__links,
+  .nav__phone {
+    display: flex;
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  color: var(--cream-soft);
+  background:
+    linear-gradient(rgba(42, 29, 18, 0.74), rgba(42, 29, 18, 0.62)),
+    var(--hero-img, none) center / cover no-repeat;
+  padding-block: clamp(3.5rem, 9vw, 6.5rem);
+}
+.hero__inner {
+  max-width: 720px;
+}
+.hero h1 {
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+.hero p.subhead {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  color: var(--cream);
+  margin-bottom: 1.75rem;
+  max-width: 38ch;
+}
+.hero__trust {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  font-size: 0.92rem;
+  color: var(--cream);
+  font-weight: 600;
+}
+.hero__trust span::before {
+  content: '★';
+  color: var(--rust);
+  margin-right: 0.4rem;
+}
+
+/* ---------- Trust strip ---------- */
+.trust-strip {
+  background: var(--brown);
+  color: var(--cream-soft);
+}
+.trust-strip ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding-block: 1.25rem;
+  text-align: center;
+}
+.trust-strip li {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+@media (min-width: 720px) {
+  .trust-strip ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- Cards / grids ---------- */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.grid--2 {
+  grid-template-columns: 1fr;
+}
+.grid--3 {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px) {
+  .grid--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.card h3 {
+  margin-bottom: 0.4rem;
+}
+.card__link {
+  font-weight: 700;
+  color: var(--rust-deep);
+}
+
+/* ---------- Steps (how it works) ---------- */
+.steps {
+  counter-reset: step;
+}
+.step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--rust);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Service-area grid ---------- */
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+@media (min-width: 700px) {
+  .area-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.area-grid a {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--brown);
+}
+.area-grid a:hover {
+  border-color: var(--rust);
+  color: var(--rust-deep);
+  text-decoration: none;
+}
+
+/* ---------- Reviews ---------- */
+.review {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.review__stars {
+  color: var(--rust);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.review__who {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: var(--brown);
+  font-size: 0.95rem;
+}
+
+/* ---------- FAQ ---------- */
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0 1.25rem;
+  margin-bottom: 0.75rem;
+  background: var(--white);
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  color: var(--brown);
+  padding: 1rem 0;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  float: right;
+  color: var(--rust);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.faq details[open] summary::after {
+  content: '–';
+}
+.faq details > p {
+  padding-bottom: 1rem;
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---------- Quote form ---------- */
+.quote-form {
+  display: grid;
+  gap: 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+}
+.quote-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--brown);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.quote-form input,
+.quote-form textarea,
+.quote-form select {
+  width: 100%;
+  font: inherit;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--cream-soft);
+}
+.quote-form input:focus,
+.quote-form textarea:focus,
+.quote-form select:focus {
+  outline: 2px solid var(--rust);
+  outline-offset: 1px;
+  background: var(--white);
+}
+.quote-form .consent {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.quote-form .consent input {
+  width: auto;
+  margin-top: 0.2rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--brown-deep);
+  color: var(--cream);
+  padding-block: 3rem 1.5rem;
+}
+.site-footer a {
+  color: var(--cream);
+}
+.site-footer a:hover {
+  color: var(--white);
+}
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+.footer-col h4 {
+  color: var(--white);
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+.footer-logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 0.75rem;
+  /* logo is dark on transparent; sit it on a cream chip for footer legibility */
+  background: var(--cream-soft);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(244, 235, 220, 0.18);
+  font-size: 0.85rem;
+  color: rgba(244, 235, 220, 0.7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+/* ---------- Western accent: rope divider ---------- */
+.rope-divider {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--rust) 0,
+    var(--rust) 8px,
+    var(--cream) 8px,
+    var(--cream) 16px
+  );
+  opacity: 0.9;
+}
+
+/* ---------- Utility ---------- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  background: var(--white);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+}
+.text-center {
+  text-align: center;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+.needs {
+  background: #fff3cd;
+  border: 1px dashed #c2962e;
+  color: #6b4e00;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 600;
+}

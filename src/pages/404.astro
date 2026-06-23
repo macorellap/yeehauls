@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+
+const title = 'Page Not Found | Yee Hauls';
+const description = 'That page could not be found. Head back home or get a free dump trailer quote.';
+---
+
+<Layout title={title} description={description} path="/404/">
+  <section class="section" style="min-height: 55vh; display:grid; place-items:center;">
+    <div class="container text-center" style="max-width: 640px;">
+      <p class="eyebrow">404</p>
+      <h1>We could not find that page.</h1>
+      <p class="lead">It may have moved. Try one of these instead.</p>
+      <div class="cta-row" style="justify-content:center; margin-top:1rem;">
+        <a href="/" class="btn btn--dark">Home</a>
+        {services.map((s) => <a href={`/services/${s.slug}/`} class="btn btn--dark">{s.name}</a>)}
+        <a href="/contact/" class="btn btn--primary">Get a Quote</a>
+      </div>
+      <p class="mt-2">Or call us at <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>.</p>
+    </div>
+  </section>
+</Layout>

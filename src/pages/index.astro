@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site, takes } from '../data/site';
+import { services, howItWorks } from '../data/services';
+import { cities } from '../data/cities';
+import { reviews } from '../data/reviews';
+import QuoteCta from '../components/QuoteCta.astro';
+
+const title = 'Dump Trailer Rental in Gilbert, AZ | Yee Hauls';
+const description =
+  'Rent a dump trailer in Gilbert and the East Valley. We deliver the trailer, you load it, we haul it off. Fast, affordable, hassle-free. Call (480) 876-5030.';
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.legalName,
+  image: `${site.url}/images/og.jpg`,
+  telephone: site.phoneE164,
+  email: site.email,
+  url: site.url,
+  areaServed: cities.map((c) => ({ '@type': 'City', name: c.name })),
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.primaryCity,
+    addressRegion: site.state,
+    addressCountry: 'US',
+  },
+  priceRange: '$$',
+};
+---
+
+<Layout title={title} description={description} path="/">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(localBusiness)} />
+
+  <!-- HERO -->
+  <section class="hero" style="--hero-img: url('/images/hero-dump-trailer-rental-gilbert-az.jpg');">
+    <div class="container hero__inner">
+      <p class="eyebrow" style="color: var(--rust);">Dump Trailer Rental &amp; Hauling · {site.metro}, {site.stateFull}</p>
+      <h1>Rent a Dump Trailer in {site.primaryCity}. We Haul It Off.</h1>
+      <p class="subhead">
+        We deliver the trailer to your driveway or job site. You load it on your own schedule. We pick it up and handle the dump run.
+      </p>
+      <div class="cta-row">
+        <a href="/contact/" class="btn btn--primary">Get a Free Quote</a>
+        <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
+      </div>
+      <div class="hero__trust">
+        <span>Local to the East Valley</span>
+        <span>We deliver &amp; pick up</span>
+        <span>Same-day available</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="container">
+      <ul>
+        <li>Gilbert · Chandler · Mesa · Queen Creek</li>
+        <li>We load &amp; dispose</li>
+        <li>Flat, upfront pricing</li>
+        <li>Owner-operated</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">How It Works</p>
+        <h2>Three Steps. Zero Hassle.</h2>
+        <p>No hourly clock and no hauling it yourself. Here is the whole process.</p>
+      </div>
+      <div class="grid grid--3 steps">
+        {howItWorks.map((s) => (
+          <div class="card">
+            <div class="step__num">{s.step}</div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--cream" id="services">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">What We Do</p>
+        <h2>Dump Trailer Rental &amp; Hauling in {site.primaryCity}</h2>
+        <p>Two simple ways to get the junk, debris, and yard waste gone.</p>
+      </div>
+      <div class="grid grid--2">
+        {services.map((s) => (
+          <div class="card">
+            <h3>{s.name}</h3>
+            <p>{s.cardBlurb}</p>
+            <a class="card__link" href={`/services/${s.slug}/`}>Learn more &rarr;</a>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-2">
+        <p><strong>We haul:</strong> {takes.join(' · ')}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2" style="align-items:center; gap:2.5rem;">
+        <div>
+          <p class="eyebrow">Why Yee Hauls</p>
+          <h2>The Easy Way to Clear It Out</h2>
+          <ul style="line-height:1.9; padding-left:1.1rem;">
+            <li><strong>You set the pace.</strong> Load the trailer on your schedule, not an hourly meter.</li>
+            <li><strong>We do the dump run.</strong> No landfill trips, no fees to figure out.</li>
+            <li><strong>Local and owner-operated.</strong> You deal with us, not a call center.</li>
+            <li><strong>Flat pricing.</strong> You know the cost before we drop the trailer.</li>
+          </ul>
+          <div class="cta-row mt-2">
+            <a href="/contact/" class="btn btn--dark">Get a Free Quote</a>
+          </div>
+        </div>
+        <div>
+          <img
+            src="/images/dump-trailer-wood-sides-east-valley.jpg"
+            alt="Yee Hauls dump trailer with wood side extensions in the East Valley at sunset"
+            width="800" height="600" loading="lazy" decoding="async"
+            style="border-radius: var(--radius); box-shadow: var(--shadow);"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Service Area</p>
+        <h2>Serving {site.primaryCity} and the {site.metro}</h2>
+        <p>We deliver dump trailers across these {site.stateFull} cities and the areas around them.</p>
+      </div>
+      <div class="area-grid">
+        {cities.map((c) => <a href={`/${c.slug}/`}>{c.name}, {site.state}</a>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS (real Google reviews only) -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Reviews</p>
+        <h2>What Our Customers Say</h2>
+        <p>Real reviews from the {site.metro}. <span class="needs">NEEDS: a few more reviews + overall rating &amp; count for star schema</span></p>
+      </div>
+      <div class={reviews.length === 1 ? 'grid' : 'grid grid--3'} style={reviews.length === 1 ? 'max-width:640px; margin-inline:auto;' : ''}>
+        {reviews.map((r) => (
+          <div class="review">
+            <div class="review__stars">{'★'.repeat(r.stars)}</div>
+            <p>&ldquo;{r.text}&rdquo;</p>
+            <div class="review__who">{r.name}{r.city ? `, ${r.city}` : ''} · via {r.source}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--cream">
+    <div class="container" style="max-width: 800px;">
+      <div class="section__head">
+        <p class="eyebrow">FAQ</p>
+        <h2>Dump Trailer Rental FAQs</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>How does renting a dump trailer work?</summary>
+          <p>We deliver a dump trailer to your home or job site, you load it at your own pace, and we come back to pick it up and handle disposal. You never touch the landfill.</p>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <p><span class="needs">NEEDS: real pricing</span> We keep pricing flat and upfront. Call {site.phoneDisplay} and we will give you a quote before anything is delivered.</p>
+        </details>
+        <details>
+          <summary>What can I put in the trailer?</summary>
+          <p>Junk, construction and remodel debris, landscaping and yard waste, and cleanout items. <span class="needs">NEEDS: confirm restricted items</span> We cannot take hazardous materials.</p>
+        </details>
+        <details>
+          <summary>What areas do you serve?</summary>
+          <p>We serve {cities.map((c) => c.name).join(', ')}, and the surrounding {site.metro}.</p>
+        </details>
+        <details>
+          <summary>How long can I keep the trailer?</summary>
+          <p><span class="needs">NEEDS: rental period details</span> Call us and we will work out a window that fits your project.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA + QUOTE FORM -->
+  <QuoteCta />
+</Layout>

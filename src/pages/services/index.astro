@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QuoteCta from '../../components/QuoteCta.astro';
+import { site, takes } from '../../data/site';
+import { services } from '../../data/services';
+
+const title = 'Our Services | Dump Trailer Rental & Hauling | Yee Hauls';
+const description =
+  'Dump trailer rental and hauling in Gilbert and the East Valley. We deliver, you load, we haul it off. See how Yee Hauls can clear your project.';
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${site.url}/services/` },
+  ],
+};
+---
+
+<Layout title={title} description={description} path="/services/">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumb)} />
+
+  <section class="hero" style="--hero-img: url('/images/dump-trailer-delivery-gilbert.jpg');">
+    <div class="container hero__inner">
+      <p class="eyebrow" style="color: var(--rust);">Services</p>
+      <h1>Dump Trailer Rental &amp; Hauling in {site.primaryCity}</h1>
+      <p class="subhead">Two simple ways to get junk, debris, and yard waste gone in the {site.metro}.</p>
+      <div class="cta-row">
+        <a href="/contact/" class="btn btn--primary">Get a Free Quote</a>
+        <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2">
+        {services.map((s) => (
+          <div class="card">
+            <h2 style="font-size:1.4rem;">{s.name}</h2>
+            <p>{s.cardBlurb}</p>
+            <p><strong>Good for:</strong> {s.useCases.slice(0, 4).join(', ')}.</p>
+            <a class="card__link" href={`/services/${s.slug}/`}>See {s.shortName} details &rarr;</a>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-2">
+        <p><strong>We haul:</strong> {takes.join(' · ')}</p>
+      </div>
+    </div>
+  </section>
+
+  <QuoteCta />
+</Layout>

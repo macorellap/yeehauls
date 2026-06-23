@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteCta from '../components/QuoteCta.astro';
+import { site } from '../data/site';
+import { cities } from '../data/cities';
+
+const title = 'About Yee Hauls | Local Dump Trailer Rental in the East Valley';
+const description =
+  'Yee Hauls is a local, owner-operated dump trailer rental and hauling business serving Gilbert, Chandler, Mesa, and Queen Creek, Arizona.';
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'About', item: `${site.url}/about/` },
+  ],
+};
+---
+
+<Layout title={title} description={description} path="/about/">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumb)} />
+
+  <section class="hero" style="--hero-img: url('/images/hero-dump-trailer-rental-gilbert-az.jpg');">
+    <div class="container hero__inner">
+      <p class="eyebrow" style="color: var(--rust);">About Us</p>
+      <h1>Local. Owner-Operated. Easy to Work With.</h1>
+      <p class="subhead">Yee Hauls makes clearing out junk and debris simple for homeowners and contractors across the {site.metro}.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <h2>Who we are</h2>
+      <p class="lead" style="color:var(--ink);">
+        Yee Hauls is a local dump trailer rental and hauling business based in {site.primaryCity}, {site.stateFull}. We started Yee Hauls to make junk removal less of a headache. Instead of renting an awkward roll-off or making trip after trip to the landfill, you get a trailer dropped at your door and we handle the haul-off.
+      </p>
+      <p>
+        <span class="needs">NEEDS: owner name + a 2-3 sentence founding story in your own words (why you started, what you care about).</span>
+      </p>
+
+      <h2 class="mt-2">How we work</h2>
+      <p>
+        We deliver a clean dump trailer to your home or job site, you load it on your own schedule, and we come back to pick it up and dispose of everything. No hourly clock, no surprise fees, and no landfill runs for you. When you would rather not load it yourself, our hauling service does that part too.
+      </p>
+
+      <h2 class="mt-2">Licensing and trust</h2>
+      <p><span class="needs">NEEDS: confirm licensed/insured status and any credentials you want listed (do not claim unless true).</span></p>
+
+      <h2 class="mt-2">Where we work</h2>
+      <p>We serve {cities.map((c) => c.name).join(', ')}, and the surrounding {site.metro}. Reach us at <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a> or <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+
+  <QuoteCta />
+</Layout>

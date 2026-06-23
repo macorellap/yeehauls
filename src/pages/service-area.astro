@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteCta from '../components/QuoteCta.astro';
+import { site } from '../data/site';
+import { cities } from '../data/cities';
+
+const title = 'Service Area | Gilbert, Chandler, Mesa & Queen Creek | Yee Hauls';
+const description =
+  'Yee Hauls delivers dump trailers across the East Valley: Gilbert, Chandler, Mesa, and Queen Creek, Arizona. See if we serve your area.';
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Service Area', item: `${site.url}/service-area/` },
+  ],
+};
+---
+
+<Layout title={title} description={description} path="/service-area/">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumb)} />
+
+  <section class="hero" style="--hero-img: url('/images/dump-trailer-wood-sides-east-valley.jpg');">
+    <div class="container hero__inner">
+      <p class="eyebrow" style="color: var(--rust);">Service Area</p>
+      <h1>Serving the {site.metro}, {site.stateFull}</h1>
+      <p class="subhead">We are a service-area business. We bring the trailer to you across these cities and the areas around them.</p>
+      <div class="cta-row">
+        <a href="/contact/" class="btn btn--primary">Get a Free Quote</a>
+        <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>Cities we serve</h2>
+        <p>Tap your city for local dump trailer rental and hauling details.</p>
+      </div>
+      <div class="grid grid--2">
+        {cities.map((c) => (
+          <div class="card">
+            <h3>{c.name}, {site.state}</h3>
+            <p>{c.intro.replace(/\s*\[CONFIRM[^\]]*\]/g, '')}</p>
+            <a class="card__link" href={`/${c.slug}/`}>Dump trailer rental in {c.name} &rarr;</a>
+          </div>
+        ))}
+      </div>
+      <p class="text-center mt-2">Not sure if you are in range? Call <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a> and ask.</p>
+    </div>
+  </section>
+
+  <QuoteCta />
+</Layout>

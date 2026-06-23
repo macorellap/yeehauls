@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string; // e.g. "/dump-trailer-rental/"
+  ogImage?: string;
+}
+
+const { title, description, path = '/', ogImage = '/images/og.jpg' } = Astro.props;
+const canonical = `${site.url}${path}`;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${site.url}${ogImage}`} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts: Zilla Slab (headings, Western nod) + Inter (clean body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="nav__logo" aria-label={`${site.name} home`}>
+          <img src="/images/logo.png" alt={`${site.name} dump trailer rental and hauling`} width="180" height="48" />
+        </a>
+        <nav aria-label="Primary">
+          <ul class="nav__links">
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/service-area/">Service Areas</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav__cta">
+          <a href={`tel:${site.phoneE164}`} class="nav__phone">{site.phoneDisplay}</a>
+          <a href="/contact/" class="btn btn--primary">Get a Quote</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <div class="rope-divider" aria-hidden="true"></div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img src="/images/logo.png" alt={site.name} class="footer-logo" width="200" height="60" />
+            <p>{site.tagline}</p>
+            <p>
+              <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a><br />
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              {services.map((s) => <li><a href={`/services/${s.slug}/`}>{s.name}</a></li>)}
+              <li><a href="/services/">All Services</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Service Areas</h4>
+            <ul>
+              {cities.map((c) => <li><a href={`/${c.slug}/`}>{c.name}, {site.state}</a></li>)}
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+              <li><a href="/privacy/">Privacy Policy</a></li>
+              <li>{site.hours}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; {year} {site.legalName}. Serving {site.primaryCity} and the {site.metro}, {site.stateFull}.</span>
+          <span>Service-area business. We come to you.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

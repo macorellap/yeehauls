@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const title = 'Privacy Policy | Yee Hauls';
+const description = 'How Yee Hauls LLC collects and uses information submitted through this website.';
+const effective = 'June 23, 2026';
+---
+
+<Layout title={title} description={description} path="/privacy/">
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <h1>Privacy Policy</h1>
+      <p style="font-size:0.9rem; color:var(--muted);">This is a starting template. For final legal review, consult a licensed attorney in {site.stateFull}.</p>
+      <p><strong>Effective date:</strong> {effective}</p>
+
+      <h2>What we collect</h2>
+      <p>When you submit our quote or contact form, we collect the information you provide, such as your name, phone number, email address, city, and a description of your job. We may also collect basic, non-identifying analytics about how visitors use this site.</p>
+
+      <h2>How we use it</h2>
+      <p>We use your information to respond to your inquiry, provide a quote, schedule service, and improve our website. If you opt in, we may text you about your quote. Message and data rates may apply, and you can opt out at any time by replying STOP.</p>
+
+      <h2>Who we share it with</h2>
+      <p>We do not sell your information. We only share it with service providers that help us operate, such as our form delivery and analytics tools, and only as needed to run the business.</p>
+
+      <h2>Your choices</h2>
+      <p>You can request that we delete the information you submitted by emailing <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+      <h2>Contact</h2>
+      <p>{site.legalName}<br /><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </section>
+</Layout>

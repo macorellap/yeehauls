@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QuoteCta from '../../components/QuoteCta.astro';
+import { site } from '../../data/site';
+import { services, howItWorks } from '../../data/services';
+import { cities } from '../../data/cities';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+const path = `/services/${service.slug}/`;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.name,
+  provider: { '@type': 'LocalBusiness', name: site.legalName, telephone: site.phoneE164 },
+  areaServed: cities.map((c) => ({ '@type': 'City', name: c.name })),
+  description: service.heroSubhead,
+};
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${site.url}/services/` },
+    { '@type': 'ListItem', position: 3, name: service.name, item: `${site.url}${path}` },
+  ],
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: service.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/\[CONFIRM[^\]]*\]\s?/g, '') },
+  })),
+};
+---
+
+<Layout title={service.metaTitle} description={service.metaDescription} path={path}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <section class="hero" style="--hero-img: url('/images/hero-dump-trailer-rental-gilbert-az.jpg');">
+    <div class="container hero__inner">
+      <p class="eyebrow" style="color: var(--rust);">{site.primaryCity}, {site.state}</p>
+      <h1>{service.name} in {site.primaryCity}</h1>
+      <p class="subhead">{service.heroSubhead}</p>
+      <div class="cta-row">
+        <a href="/contact/" class="btn btn--primary">Get a Free Quote</a>
+        <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <h2>What is {service.name.toLowerCase()}?</h2>
+      {service.whatItIs.map((p) => <p class="lead" style="color:var(--ink);">{p}</p>)}
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container" style="max-width: 800px;">
+      <h2>What people use it for</h2>
+      <ul style="columns: 2; line-height: 2;">
+        {service.useCases.map((u) => <li>{u}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2>How it works</h2>
+      </div>
+      <div class="grid grid--3 steps">
+        {howItWorks.map((s) => (
+          <div class="card">
+            <div class="step__num">{s.step}</div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container" style="max-width: 800px;">
+      <h2>Pricing</h2>
+      <p><span class="needs">NEEDS: real pricing</span> We keep {service.name.toLowerCase()} pricing flat and upfront, with no surprise fees. What you pay depends on the size of the job and where you are in the {site.metro}.</p>
+      <p>Call <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a> and we will give you a clear quote before anything is scheduled.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <div class="section__head">
+        <h2>{service.name} FAQs</h2>
+      </div>
+      <div class="faq">
+        {service.faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p set:html={f.a.replace(/\[CONFIRM[^\]]*\]/g, '<span class="needs">NEEDS: confirm</span>')} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container text-center">
+      <h2>We serve the whole {site.metro}</h2>
+      <p>{service.name} in {cities.map((c) => c.name).join(', ')}, and nearby.</p>
+      <div class="area-grid" style="max-width:720px; margin:1.5rem auto 0;">
+        {cities.map((c) => <a href={`/${c.slug}/`}>{c.name}, {site.state}</a>)}
+      </div>
+    </div>
+  </section>
+
+  <QuoteCta heading={`Get a Free ${service.name} Quote`} />
+</Layout>

@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuoteCta from '../components/QuoteCta.astro';
+import { site } from '../data/site';
+import { services, howItWorks } from '../data/services';
+import { cities } from '../data/cities';
+
+export function getStaticPaths() {
+  return cities.map((c) => ({ params: { city: c.slug }, props: { city: c } }));
+}
+
+const { city } = Astro.props;
+const path = `/${city.slug}/`;
+const otherCities = cities.filter((c) => c.slug !== city.slug);
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: `${city.name}, ${site.state}`, item: `${site.url}${path}` },
+  ],
+};
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Dump Trailer Rental & Hauling',
+  provider: { '@type': 'LocalBusiness', name: site.legalName, telephone: site.phoneE164 },
+  areaServed: { '@type': 'City', name: city.name },
+  description: `Dump trailer rental and hauling in ${city.name}, ${site.stateFull}.`,
+};
+---
+
+<Layout title={city.metaTitle} description={city.metaDescription} path={path}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <section class="hero" style="--hero-img: url('/images/dump-trailer-delivery-gilbert.jpg');">
+    <div class="container hero__inner">
+      <p class="eyebrow" style="color: var(--rust);">{city.county}</p>
+      <h1>Dump Trailer Rental in {city.name}, {site.state}</h1>
+      <p class="subhead">We deliver dump trailers across {city.name}. You load it, we haul it off and handle the dump run.</p>
+      <div class="cta-row">
+        <a href="/contact/" class="btn btn--primary">Get a Free Quote</a>
+        <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- City-specific intro = the unique content -->
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <h2>Local dump trailer rental in {city.name}</h2>
+      <p class="lead" style="color:var(--ink);">{city.intro.replace(/\s*\[CONFIRM[^\]]*\]/g, '')}</p>
+      <p><span class="needs">NEEDS: 1-2 verified local details for {city.name} (real neighborhoods, common job types, landfill/transfer station, terrain). Keeps this page unique for SEO.</span></p>
+    </div>
+  </section>
+
+  <!-- Stacked {Service} in {City} H2s -->
+  <section class="section section--cream">
+    <div class="container" style="max-width: 800px;">
+      {services.map((s) => (
+        <div style="margin-bottom:1.5rem;">
+          <h2 style="font-size:1.5rem;">{s.name} in {city.name}</h2>
+          <p>{s.cardBlurb} <a href={`/services/${s.slug}/`}>Learn more about {s.shortName.toLowerCase()} &rarr;</a></p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head"><h2>How it works in {city.name}</h2></div>
+      <div class="grid grid--3 steps">
+        {howItWorks.map((s) => (
+          <div class="card">
+            <div class="step__num">{s.step}</div>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="container" style="max-width: 800px;">
+      <h2>Areas we serve in {city.name}</h2>
+      <p><span class="needs">NEEDS: confirm real {city.name} neighborhoods/areas</span></p>
+      <ul style="columns: 2; line-height: 2;">
+        {city.neighborhoods.filter((n) => n !== '[CONFIRM]').map((n) => <li>{n}</li>)}
+      </ul>
+      <p class="mt-2">Also serving {otherCities.map((c) => c.name).join(', ')}. See our full <a href="/service-area/">service area</a>.</p>
+    </div>
+  </section>
+
+  <QuoteCta heading={`Get a Free Dump Trailer Quote in ${city.name}`} />
+</Layout>

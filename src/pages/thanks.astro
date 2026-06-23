@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const title = 'Thanks | Yee Hauls';
+const description = 'Thanks for reaching out to Yee Hauls. We will be in touch shortly.';
+---
+
+<Layout title={title} description={description} path="/thanks/">
+  <section class="section" style="min-height: 50vh; display:grid; place-items:center;">
+    <div class="container text-center" style="max-width: 640px;">
+      <p class="eyebrow">Request received</p>
+      <h1>Thanks. We got your request.</h1>
+      <p class="lead">We will follow up shortly with your free quote. Need it sooner? Call or text us.</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a href={`tel:${site.phoneE164}`} class="btn btn--primary">Call {site.phoneDisplay}</a>
+        <a href="/" class="btn btn--dark">Back to Home</a>
+      </div>
+    </div>
+  </section>
+</Layout>
