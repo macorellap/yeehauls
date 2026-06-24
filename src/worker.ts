@@ -17,6 +17,7 @@
 interface Env {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
   LEAD_WEBHOOK_URL?: string;
+  LEAD_WEBHOOK_SECRET?: string; // shared secret sent as x-webhook-secret; n8n verifies it
   RESEND_API_KEY?: string;
   LEAD_EMAIL_TO?: string;
   LEAD_EMAIL_FROM?: string;
@@ -71,10 +72,12 @@ async function handleQuote(request: Request, env: Env): Promise<Response> {
 
   // Phase 2 path: forward to n8n (or any webhook) for CRM/SMS/automation.
   if (env.LEAD_WEBHOOK_URL) {
+    const headers: Record<string, string> = { 'content-type': 'application/json' };
+    if (env.LEAD_WEBHOOK_SECRET) headers['x-webhook-secret'] = env.LEAD_WEBHOOK_SECRET;
     tasks.push(
       fetch(env.LEAD_WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers,
         body: JSON.stringify(lead),
       })
     );
