@@ -45,9 +45,9 @@ const localBusiness = {
         <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
       </div>
       <div class="hero__trust">
-        <span>Local to the East Valley</span>
+        <span>Licensed &amp; insured</span>
         <span>We deliver &amp; pick up</span>
-        <span>Same-day available</span>
+        <span>Same-day &amp; weekends</span>
       </div>
     </div>
   </section>
@@ -57,9 +57,9 @@ const localBusiness = {
     <div class="container">
       <ul>
         <li>Gilbert · Chandler · Mesa · Queen Creek</li>
-        <li>We load &amp; dispose</li>
-        <li>Flat, upfront pricing</li>
-        <li>Owner-operated</li>
+        <li>Licensed &amp; insured</li>
+        <li>$250 per drop, first ton included</li>
+        <li>Same-day &amp; weekends by availability</li>
       </ul>
     </div>
   </section>
@@ -184,19 +184,19 @@ const localBusiness = {
         </details>
         <details>
           <summary>How much does it cost?</summary>
-          <p><span class="needs">NEEDS: real pricing</span> We keep pricing flat and upfront. Call {site.phoneDisplay} and we will give you a quote before anything is delivered.</p>
+          <p>Dump trailer rental is $250 per drop, which includes the first ton (2,000 lbs) and up to 48 hours. Additional weight is $90 per ton. Call {site.phoneDisplay} and we will confirm your quote up front.</p>
         </details>
         <details>
           <summary>What can I put in the trailer?</summary>
-          <p>Junk, construction and remodel debris, landscaping and yard waste, and cleanout items. <span class="needs">NEEDS: confirm restricted items</span> We cannot take hazardous materials.</p>
+          <p>We take construction debris, landscaping debris, yard waste, and non-hazardous household junk. Materials like concrete, dirt, and rock need prior approval, and hazardous items are not allowed. Call us before loading anything you are unsure about.</p>
+        </details>
+        <details>
+          <summary>How long can I keep the trailer?</summary>
+          <p>You get the trailer for up to 48 hours, which covers most cleanouts and weekend projects.</p>
         </details>
         <details>
           <summary>What areas do you serve?</summary>
           <p>We serve {cities.map((c) => c.name).join(', ')}, and the surrounding {site.metro}.</p>
-        </details>
-        <details>
-          <summary>How long can I keep the trailer?</summary>
-          <p><span class="needs">NEEDS: rental period details</span> Call us and we will work out a window that fits your project.</p>
         </details>
       </div>
     </div>

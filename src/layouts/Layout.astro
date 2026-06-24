@@ -84,6 +84,9 @@ const year = new Date().getFullYear();
               <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a><br />
               <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>
+            {site.instagram && (
+              <p><a href={site.instagram} target="_blank" rel="noopener noreferrer">Follow us on Instagram</a></p>
+            )}
           </div>
           <div class="footer-col">
             <h4>Services</h4>

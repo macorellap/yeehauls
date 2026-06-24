@@ -1,5 +1,5 @@
 // Central business facts. Single source of truth for the whole site.
-// Anything marked [CONFIRM] is a placeholder Marco/owner needs to verify.
+// Anything marked [CONFIRM] is a placeholder still to be verified.
 
 export const site = {
   name: 'Yee Hauls',
@@ -20,42 +20,75 @@ export const site = {
   stateFull: 'Arizona',
   metro: 'East Valley',
 
-  // Hours - [CONFIRM] actual hours / same-day / weekend availability
-  hours: '[CONFIRM] Mon-Sat, 7am-6pm',
-  hoursSchema: 'Mo-Sa 07:00-18:00', // [CONFIRM]
-  sameDay: true, // [CONFIRM]
+  // Availability: appointment-based; same-day and weekends subject to trailer availability
+  hours: 'By appointment, 7 days a week',
+  sameDay: true,
+  weekends: true,
+
+  // Credibility (verified by owner)
+  licensed: true, // business license
+  insured: true, // business insurance
 
   // Social
-  instagram: 'https://www.instagram.com/yeehauls', // [CONFIRM handle/URL]
+  instagram: 'https://www.instagram.com/yeehauls',
   googleProfile: '[CONFIRM full Google Business Profile URL]', // share link: https://share.google/zUZgjWhmsjE90Qjsh
 
   // Brand colors - pulled from the logo (espresso brown + rope cream) + a desert rust CTA
   colors: {
-    brown: '#3a2a1c', // primary / logo brown - headers, headings, overlay
+    brown: '#3a2a1c',
     brownDeep: '#2a1d12',
-    cream: '#f4ebdc', // rope cream - warm section backgrounds
+    cream: '#f4ebdc',
     creamSoft: '#faf5ec',
-    rust: '#c2622e', // CTA / accent - desert rust
+    rust: '#c2622e',
     rustDeep: '#a44e21',
-    ink: '#22201d', // body text
-    line: '#e4d8c4', // hairline borders on cream
+    ink: '#22201d',
+    line: '#e4d8c4',
   },
 } as const;
 
-// What Yee Hauls hauls (used in copy + "what we take" lists). Verified-safe, generic.
+// Dump trailer rental pricing (verified by owner).
+export const pricing = {
+  basePrice: 250, // per drop
+  includedTons: 1, // first ton (2,000 lbs) included
+  includedLbs: 2000,
+  perAdditionalTon: 90,
+  rentalHours: 48,
+  maxPayloadLbs: 4840, // rated payload / ~2.5-ton max load
+  overageFee: '$100 per 500 lbs over the payload limit',
+  // One-line summary used in several places.
+  summary:
+    '$250 per drop, which includes the first ton (2,000 lbs) and up to 48 hours. Additional weight is $90 per ton.',
+};
+
+// What we advertise that we take (non-hazardous).
 export const takes = [
-  'Junk and general clutter',
-  'Construction and remodel debris',
-  'Landscaping and yard waste',
-  'Garage, estate, and home cleanouts',
-  'Roofing tear-off debris',
-  'Furniture and appliances', // [CONFIRM appliances OK]
+  'Construction debris',
+  'Landscaping debris',
+  'Household junk (non-hazardous)',
+  'Yard waste',
 ];
 
-// Common "we can't take" items - [CONFIRM exact list with owner]
-export const doesNotTake = [
-  'Hazardous materials',
-  'Wet paint and chemicals',
-  'Tires', // [CONFIRM]
-  'Anything requiring special disposal', // [CONFIRM]
+// Special-handling items: allowed only with prior approval, may incur extra fees.
+export const specialHandling = [
+  'Concrete',
+  'Dirt',
+  'Rock',
+  'Pavers, block, and brick',
+  'Large quantities of manure',
+];
+
+// Prohibited items (cannot go in the trailer or hauling loads).
+export const prohibited = [
+  'Hazardous waste',
+  'Paint, stains, and solvents',
+  'Chemicals and pesticides',
+  'Flammable or combustible materials (gasoline, propane tanks, fuel, oil)',
+  'Batteries (including vehicle and lithium batteries)',
+  'Asbestos-containing materials',
+  'Medical or biohazardous waste',
+  'Radioactive materials',
+  'Explosives or ammunition',
+  'Tires (unless approved in advance)',
+  'Refrigerators, air conditioners, or appliances with refrigerants (unless approved)',
+  'Any material prohibited by local, state, or federal disposal regulations',
 ];

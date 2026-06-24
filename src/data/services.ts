@@ -16,6 +16,7 @@ export interface Service {
   metaDescription: string;
   whatItIs: string[]; // 2 short paragraphs
   useCases: string[]; // high-intent "use it for" bullets
+  pricingNote: string; // honest pricing for this service
   faqs: FAQ[];
 }
 
@@ -43,6 +44,8 @@ export const services: Service[] = [
       'Moving and downsizing junk',
       'HOA and rental turnovers',
     ],
+    pricingNote:
+      'Dump trailer rental is $250 per drop. That includes the first ton (2,000 lbs) and up to 48 hours with the trailer. Extra weight is $90 per ton. Our 6 ft by 10 ft trailer holds up to a 2.5-ton load (4,840 lb payload), and loads over the limit are subject to a $100 per 500 lbs overage fee.',
     faqs: [
       {
         q: 'How does dump trailer rental work?',
@@ -50,15 +53,19 @@ export const services: Service[] = [
       },
       {
         q: 'How long can I keep the trailer?',
-        a: '[CONFIRM rental period] Call us and we will set a window that fits your project. Most jobs only need a day or two.',
+        a: 'You get the trailer for up to 48 hours. That is plenty of time for most cleanouts and weekend projects.',
+      },
+      {
+        q: 'How much does it cost?',
+        a: 'It is $250 per drop, which includes the first ton (2,000 lbs) and up to 48 hours. Additional weight is $90 per ton. Call (480) 876-5030 and we will confirm your quote up front.',
+      },
+      {
+        q: 'Is there a weight limit?',
+        a: 'The 6 ft by 10 ft trailer holds up to a 2.5-ton load (a 4,840 lb payload). Loads over the limit are subject to a $100 per 500 lbs overage charge, so call us if you are unsure about the weight of your material.',
       },
       {
         q: 'Where will you place the trailer?',
         a: 'We drop it where you need it, like a driveway, side yard, or job site, as long as there is safe access for the truck. Tell us the spot when you book.',
-      },
-      {
-        q: 'How much does it cost?',
-        a: '[CONFIRM pricing] We keep pricing flat and upfront. Call (480) 876-5030 and we will quote you before anything is delivered.',
       },
     ],
   },
@@ -82,9 +89,11 @@ export const services: Service[] = [
       'Single heavy or bulky items',
       'Post-project debris cleanup',
       'Yard and landscaping waste',
-      'Appliance and furniture removal', // [CONFIRM appliances]
+      'Furniture and bulky item removal',
       'Same-day haul-offs',
     ],
+    pricingNote:
+      'Hauling is priced by the load and the job, so it depends on what you have and where you are. Call (480) 876-5030 and we will give you a flat quote up front, with no surprise fees.',
     faqs: [
       {
         q: 'Do I need to load anything myself?',
@@ -92,15 +101,15 @@ export const services: Service[] = [
       },
       {
         q: 'Can you come the same day?',
-        a: '[CONFIRM same-day] We offer same-day hauling when our schedule allows. Call early and we will do our best to fit you in.',
+        a: 'Same-day and weekend service is available based on trailer availability. Call early and we will do our best to fit you in.',
       },
       {
         q: 'What can you haul away?',
-        a: 'Junk, construction and remodel debris, landscaping and yard waste, and most household items. We cannot take hazardous materials.',
+        a: 'We take construction debris, landscaping debris, yard waste, and non-hazardous household junk. Some materials like concrete, dirt, and rock need prior approval, and hazardous items are not allowed. Contact us before loading anything you are unsure about.',
       },
       {
         q: 'How is hauling priced?',
-        a: '[CONFIRM pricing] Pricing depends on the load. Call (480) 876-5030 for a fast, flat quote.',
+        a: 'Pricing depends on the load. Call (480) 876-5030 for a fast, flat quote before we start.',
       },
     ],
   },
@@ -125,11 +134,9 @@ export const howItWorks = [
   },
 ];
 
-// Trailer specs - [CONFIRM] every number with the owner before launch.
+// Trailer specs (verified by owner).
 export const trailerSpecs = {
-  brand: 'Texas Pride', // visible on the trailer in photos
-  sizeDisplay: '[CONFIRM] e.g. 12 ft tandem-axle dump trailer',
-  capacityDisplay: '[CONFIRM] e.g. 7 tons / X cubic yards',
+  sizeDisplay: '6 ft x 10 ft dump trailer',
+  capacityDisplay: '2.5-ton max load (4,840 lb payload)',
   removableSides: true, // wood side extensions visible in photos
-  notes: '[CONFIRM] daily rate, included tonnage, overage fees, delivery radius/fee',
 };

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import QuoteCta from '../../components/QuoteCta.astro';
-import { site } from '../../data/site';
+import { site, takes, specialHandling, prohibited } from '../../data/site';
 import { services, howItWorks } from '../../data/services';
 import { cities } from '../../data/cities';
 
@@ -95,8 +95,36 @@ const faqSchema = {
   <section class="section section--cream">
     <div class="container" style="max-width: 800px;">
       <h2>Pricing</h2>
-      <p><span class="needs">NEEDS: real pricing</span> We keep {service.name.toLowerCase()} pricing flat and upfront, with no surprise fees. What you pay depends on the size of the job and where you are in the {site.metro}.</p>
-      <p>Call <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a> and we will give you a clear quote before anything is scheduled.</p>
+      <p>{service.pricingNote}</p>
+      <p>Call <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a> and we will confirm your quote before anything is scheduled.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <h2>What we can and can't take</h2>
+      <p>Not sure about a material? Call us before you load it and we will let you know.</p>
+      <div class="grid grid--3" style="margin-top:1.25rem;">
+        <div class="card">
+          <h3 style="color:var(--rust-deep);">We take</h3>
+          <ul style="line-height:1.9; padding-left:1.1rem; margin:0;">
+            {takes.map((t) => <li>{t}</li>)}
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--rust-deep);">Needs prior approval</h3>
+          <ul style="line-height:1.9; padding-left:1.1rem; margin:0;">
+            {specialHandling.map((t) => <li>{t}</li>)}
+          </ul>
+          <p style="font-size:0.85rem; color:var(--muted); margin:0.5rem 0 0;">May incur an extra fee.</p>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--rust-deep);">Not allowed</h3>
+          <ul style="line-height:1.7; padding-left:1.1rem; margin:0; font-size:0.92rem;">
+            {prohibited.map((t) => <li>{t}</li>)}
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
