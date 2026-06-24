@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { site, takes } from '../data/site';
-import { services, howItWorks } from '../data/services';
+import { howItWorks } from '../data/services';
 import { cities } from '../data/cities';
 import { reviews } from '../data/reviews';
 import QuoteCta from '../components/QuoteCta.astro';
@@ -41,7 +41,7 @@ const localBusiness = {
   <!-- HERO -->
   <section class="hero" style="--hero-img: url('/images/hero-dump-trailer-rental-gilbert-az.jpg');">
     <div class="container hero__inner">
-      <p class="eyebrow" style="color: var(--rust);">Dump Trailer Rental &amp; Hauling · {site.metro}, {site.stateFull}</p>
+      <p class="eyebrow" style="color: var(--rust);">Dump Trailer Rental · {site.metro}, {site.stateFull}</p>
       <h1>Rent a Dump Trailer in {site.primaryCity}. We Haul It Off.</h1>
       <p class="subhead">
         We deliver the trailer to your driveway or job site. You load it on your own schedule. We pick it up and handle the dump run.
@@ -95,20 +95,19 @@ const localBusiness = {
     <div class="container">
       <div class="section__head">
         <p class="eyebrow">What We Do</p>
-        <h2>Dump Trailer Rental &amp; Hauling in {site.primaryCity}</h2>
-        <p>Two simple ways to get the junk, debris, and yard waste gone.</p>
+        <h2>Dump Trailer Rental in {site.primaryCity}</h2>
+        <p>One simple service. We deliver the trailer, you load it on your schedule, and we haul it off and handle the dump run. You never load it yourself or make a landfill trip.</p>
       </div>
-      <div class="grid grid--2">
-        {services.map((s) => (
-          <div class="card">
-            <h3>{s.name}</h3>
-            <p>{s.cardBlurb}</p>
-            <a class="card__link" href={`/services/${s.slug}/`}>Learn more &rarr;</a>
-          </div>
-        ))}
-      </div>
-      <div class="text-center mt-2">
-        <p><strong>We haul:</strong> {takes.join(' · ')}</p>
+      <div class="card" style="max-width:760px; margin:0 auto;">
+        <h3>What's included</h3>
+        <ul style="line-height:2; padding-left:1.1rem; margin:0 0 1rem;">
+          <li>Delivery of a clean dump trailer to your driveway or job site</li>
+          <li>Up to 48 hours to load on your own schedule</li>
+          <li>Pickup when you are done</li>
+          <li>The dump run and disposal, handled for you</li>
+        </ul>
+        <p style="margin:0 0 0.75rem;"><strong>We haul:</strong> {takes.join(' · ')}</p>
+        <a class="card__link" href="/services/dump-trailer-rental/">See full rental details &rarr;</a>
       </div>
     </div>
   </section>

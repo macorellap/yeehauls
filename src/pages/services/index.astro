@@ -4,9 +4,10 @@ import QuoteCta from '../../components/QuoteCta.astro';
 import { site, takes } from '../../data/site';
 import { services } from '../../data/services';
 
-const title = 'Our Services | Dump Trailer Rental & Hauling | Yee Hauls';
+const service = services[0];
+const title = 'Dump Trailer Rental in Gilbert, AZ | Yee Hauls';
 const description =
-  'Dump trailer rental and hauling in Gilbert and the East Valley. We deliver, you load, we haul it off. See how Yee Hauls can clear your project.';
+  'Dump trailer rental in Gilbert and the East Valley. We deliver the trailer, you load it, and we haul it off and handle the dump run.';
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -23,8 +24,8 @@ const breadcrumb = {
   <section class="hero" style="--hero-img: url('/images/dump-trailer-delivery-gilbert.jpg');">
     <div class="container hero__inner">
       <p class="eyebrow" style="color: var(--rust);">Services</p>
-      <h1>Dump Trailer Rental &amp; Hauling in {site.primaryCity}</h1>
-      <p class="subhead">Two simple ways to get junk, debris, and yard waste gone in the {site.metro}.</p>
+      <h1>Dump Trailer Rental in {site.primaryCity}</h1>
+      <p class="subhead">One simple service: we deliver the trailer, you load it, and we haul it off in the {site.metro}.</p>
       <div class="cta-row">
         <a href="/contact/" class="btn btn--primary">Get a Free Quote</a>
         <a href={`tel:${site.phoneE164}`} class="btn btn--ghost">Call {site.phoneDisplay}</a>
@@ -33,19 +34,13 @@ const breadcrumb = {
   </section>
 
   <section class="section">
-    <div class="container">
-      <div class="grid grid--2">
-        {services.map((s) => (
-          <div class="card">
-            <h2 style="font-size:1.4rem;">{s.name}</h2>
-            <p>{s.cardBlurb}</p>
-            <p><strong>Good for:</strong> {s.useCases.slice(0, 4).join(', ')}.</p>
-            <a class="card__link" href={`/services/${s.slug}/`}>See {s.shortName} details &rarr;</a>
-          </div>
-        ))}
-      </div>
-      <div class="text-center mt-2">
+    <div class="container" style="max-width: 760px;">
+      <div class="card">
+        <h2 style="font-size:1.5rem;">{service.name}</h2>
+        <p>{service.cardBlurb}</p>
+        <p><strong>Good for:</strong> {service.useCases.slice(0, 4).join(', ')}.</p>
         <p><strong>We haul:</strong> {takes.join(' · ')}</p>
+        <a class="card__link" href={`/services/${service.slug}/`}>See full rental details, pricing &amp; what we take &rarr;</a>
       </div>
     </div>
   </section>

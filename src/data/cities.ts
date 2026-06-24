@@ -24,7 +24,7 @@ export const cities: City[] = [
     neighborhoods: ['Power Ranch', 'Agritopia', 'Morrison Ranch', 'Val Vista Lakes', 'Heritage District'],
     metaTitle: 'Dump Trailer Rental in Gilbert, AZ | Yee Hauls',
     metaDescription:
-      'Local dump trailer rental and hauling in Gilbert, AZ. We deliver, you load, we haul it off. Call (480) 876-5030 for a free quote.',
+      'Local dump trailer rental in Gilbert, AZ. We deliver, you load, we haul it off. Call (480) 876-5030 for a free quote.',
   },
   {
     slug: 'chandler',
@@ -36,7 +36,7 @@ export const cities: City[] = [
     neighborhoods: ['Ocotillo', 'Fulton Ranch', 'Clemente Ranch', 'Downtown Chandler'],
     metaTitle: 'Dump Trailer Rental in Chandler, AZ | Yee Hauls',
     metaDescription:
-      'Dump trailer rental and hauling in Chandler, AZ. We deliver the trailer, you load it, we haul it off. Call (480) 876-5030 for a free quote.',
+      'Dump trailer rental in Chandler, AZ. We deliver the trailer, you load it, we haul it off. Call (480) 876-5030 for a free quote.',
   },
   {
     slug: 'mesa',
@@ -48,7 +48,7 @@ export const cities: City[] = [
     neighborhoods: ['Eastmark', 'Las Sendas', 'Dobson Ranch', 'East Mesa', 'West Mesa'],
     metaTitle: 'Dump Trailer Rental in Mesa, AZ | Yee Hauls',
     metaDescription:
-      'Dump trailer rental and hauling in Mesa, AZ. Delivery, you load, we haul it away. Call (480) 876-5030 for a free quote.',
+      'Dump trailer rental in Mesa, AZ. Delivery, you load, we haul it away. Call (480) 876-5030 for a free quote.',
   },
   {
     slug: 'queen-creek',
@@ -60,7 +60,7 @@ export const cities: City[] = [
     neighborhoods: ['Encanterra', 'Hastings Farms', 'Whitewing', 'Barney Farms', 'Ironwood Crossing'],
     metaTitle: 'Dump Trailer Rental in Queen Creek, AZ | Yee Hauls',
     metaDescription:
-      'Dump trailer rental and hauling in Queen Creek, AZ. We deliver, you load, we haul it off. Call (480) 876-5030 for a free quote.',
+      'Dump trailer rental in Queen Creek, AZ. We deliver, you load, we haul it off. Call (480) 876-5030 for a free quote.',
   },
 ];
 
