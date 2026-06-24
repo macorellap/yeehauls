@@ -26,6 +26,12 @@ const localBusiness = {
     addressCountry: 'US',
   },
   priceRange: '$$',
+  review: reviews.map((r) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: r.name },
+    reviewRating: { '@type': 'Rating', ratingValue: r.stars, bestRating: 5 },
+    reviewBody: r.text,
+  })),
 };
 ---
 
@@ -156,7 +162,7 @@ const localBusiness = {
       <div class="section__head">
         <p class="eyebrow">Reviews</p>
         <h2>What Our Customers Say</h2>
-        <p>Real reviews from the {site.metro}. <span class="needs">NEEDS: a few more reviews + overall rating &amp; count for star schema</span></p>
+        <p>Real reviews from the {site.metro}.</p>
       </div>
       <div class={reviews.length === 1 ? 'grid' : 'grid grid--3'} style={reviews.length === 1 ? 'max-width:640px; margin-inline:auto;' : ''}>
         {reviews.map((r) => (

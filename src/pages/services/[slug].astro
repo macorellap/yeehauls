@@ -137,7 +137,7 @@ const faqSchema = {
         {service.faqs.map((f) => (
           <details>
             <summary>{f.q}</summary>
-            <p set:html={f.a.replace(/\[CONFIRM[^\]]*\]/g, '<span class="needs">NEEDS: confirm</span>')} />
+            <p>{f.a}</p>
           </details>
         ))}
       </div>
