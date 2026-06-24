@@ -53,8 +53,7 @@ const serviceSchema = {
   <section class="section">
     <div class="container" style="max-width: 800px;">
       <h2>Local dump trailer rental in {city.name}</h2>
-      <p class="lead" style="color:var(--ink);">{city.intro.replace(/\s*\[CONFIRM[^\]]*\]/g, '')}</p>
-      <p><span class="needs">NEEDS: 1-2 verified local details for {city.name} (real neighborhoods, common job types, landfill/transfer station, terrain). Keeps this page unique for SEO.</span></p>
+      <p class="lead" style="color:var(--ink);">{city.intro}</p>
     </div>
   </section>
 
@@ -88,9 +87,9 @@ const serviceSchema = {
   <section class="section section--cream">
     <div class="container" style="max-width: 800px;">
       <h2>Areas we serve in {city.name}</h2>
-      <p><span class="needs">NEEDS: confirm real {city.name} neighborhoods/areas</span></p>
+      <p>We deliver dump trailers across {city.name}, including these areas and the neighborhoods around them.</p>
       <ul style="columns: 2; line-height: 2;">
-        {city.neighborhoods.filter((n) => n !== '[CONFIRM]').map((n) => <li>{n}</li>)}
+        {city.neighborhoods.map((n) => <li>{n}</li>)}
       </ul>
       <p class="mt-2">Also serving {otherCities.map((c) => c.name).join(', ')}. See our full <a href="/service-area/">service area</a>.</p>
     </div>
